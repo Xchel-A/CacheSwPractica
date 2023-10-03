@@ -21,9 +21,9 @@ self.addEventListener('fetch', event => {
 
   event.respondWith(response)
 });*/
-
+const CACHE_NAME = 'cache.1'
 self.addEventListener('fetch', event => {
-  const cahePromise = caches.open('cache.1').then((cache)=>{
+  const cahePromise = caches.open(CACHE_NAME).then((cache)=>{
     return cache.addAll([
       '/',
       '/index.html',
@@ -54,9 +54,9 @@ self.addEventListener('fetch', e => {
     return fetch(e.request)
     .then(newResponse =>{
 
-      caches.open('cache.1')
+      caches.open(CACHE_NAME)
       .then(cache =>{
-        cache.put(e.request,e.newResponse);
+        cache.put(e.request,newResponse);
       })
 
 
